@@ -1,5 +1,14 @@
 # Compiled class file
 *.class
+*.project
+*.settings
+*.classpath
+target
+
+*\.settings
+*\.project
+*\.classpath
+*\target
 
 # Log file
 *.log
