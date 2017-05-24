@@ -3,8 +3,11 @@ package eu.arcangelovicedomini.redmineapi.common.util;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import eu.arcangelovicedomini.redmineapi.common.exception.RedmineConnectorException;
 import eu.arcangelovicedomini.redmineapi.common.exception.RedmineException;
-import eu.arcangelovicedomini.redmineapi.common.exception.RedmineTechnicalException;
 
 public class Utils {
 
@@ -12,24 +15,32 @@ public class Utils {
 		if (th instanceof RedmineException) {
 			return (RedmineException) th;
 		}
-		return new RedmineTechnicalException(th, th.getMessage());
+		return new RedmineConnectorException(th, th.getMessage());
 	}
 
-	public static void checkNullArgument(String name, Object argument) {
+	public static void checkNullArgument(String name, Object argument) throws RedmineException {
 		if (argument == null) {
-			throw new IllegalArgumentException(name + " argument cannot be null");
+			throw resolveRedmineException(new IllegalArgumentException(name + " argument cannot be null"));
 		}
 	}
 
-	public static void checkEmptyString(String name, String argument) {
+	public static void checkEmptyString(String name, String argument) throws RedmineException {
 		if (argument == null || StringUtils.isBlank(argument)) {
-			throw new IllegalArgumentException(name + " argument cannot be null");
+			throw resolveRedmineException(new IllegalArgumentException(name + " argument cannot be null"));
 		}
 	}
 	
-	public static void checkEmptyArray(String name, Object[] argument) {
+	public static void checkEmptyArray(String name, Object[] argument) throws RedmineException {
 		if (argument == null || ArrayUtils.isEmpty(argument)) {
-			throw new IllegalArgumentException(name + " argument cannot be null");
+			throw resolveRedmineException(new IllegalArgumentException(name + " argument cannot be null"));
+		}
+	}
+	
+	public static String toJson(Object dto) {
+		try {
+			return new ObjectMapper().writeValueAsString(dto);
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException("Error parsing JSON data", e);
 		}
 	}
 }
