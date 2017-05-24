@@ -23,7 +23,7 @@ public class IssuesServiceImpl implements IssuesService {
 			Utils.checkEmptyString("password", password);
 		}
 
-		OutboundIssuesService outboundService = CXFServiceUtils.getOutboundService(OutboundIssuesService.class);
+		OutboundIssuesService outboundService = CXFServiceUtils.<OutboundIssuesService>getOutboundService(OutboundIssuesService.class);
 		return outboundService.getIssues(offset, limit, sort, issueId, projectId, subprojectId, trackerId, statusId,
 				assignedToId, parentId);
 	}
