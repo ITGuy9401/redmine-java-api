@@ -1,6 +1,7 @@
 package eu.arcangelovicedomini.redmineapi.issues.internal.service;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.QueryParam;
 
@@ -38,4 +39,8 @@ public interface OutboundIssuesService {
 			@QueryParam("status_id") String statusId,
 			@QueryParam("assigned_to_id") String assignedToId,
 			@QueryParam("parent_id") String parentId) throws RedmineException;
+	
+	@POST
+	@Path("issues.json")
+	public void createIssue() throws RedmineException;
 }
