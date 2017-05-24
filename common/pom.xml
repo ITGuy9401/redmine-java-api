@@ -6,13 +6,12 @@
 	<parent>
 		<groupId>eu.arcangelovicedomini.redmine-java-api</groupId>
 		<artifactId>redmine-all</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>${project.version}</version>
 	</parent>
 
-	<groupId>eu.arcangelovicedomini.redmine-java-api</groupId>
 	<artifactId>redmine-common-api</artifactId>
 	<packaging>jar</packaging>
-	<version>${project.version}</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Redmine Common API</name>
 
 	<build>
