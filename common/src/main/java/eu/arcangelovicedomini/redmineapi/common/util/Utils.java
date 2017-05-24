@@ -1,5 +1,7 @@
 package eu.arcangelovicedomini.redmineapi.common.util;
 
+import java.text.SimpleDateFormat;
+
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -38,7 +40,9 @@ public class Utils {
 	
 	public static String toJson(Object dto) {
 		try {
-			return new ObjectMapper().writeValueAsString(dto);
+			ObjectMapper mapper = new ObjectMapper();
+			mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SZ"));
+			return mapper.writeValueAsString(dto);
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException("Error parsing JSON data", e);
 		}
