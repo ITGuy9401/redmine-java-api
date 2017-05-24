@@ -24,6 +24,7 @@ public class IssuesServiceImpl implements IssuesService {
 		}
 
 		OutboundIssuesService outboundService = CXFServiceUtils.<OutboundIssuesService>getOutboundService(OutboundIssuesService.class);
+		
 		return outboundService.getIssues(offset, limit, sort, issueId, projectId, subprojectId, trackerId, statusId,
 				assignedToId, parentId);
 	}

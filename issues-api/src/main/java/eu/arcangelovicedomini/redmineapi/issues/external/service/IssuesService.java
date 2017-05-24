@@ -1,9 +1,5 @@
 package eu.arcangelovicedomini.redmineapi.issues.external.service;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
-
 import eu.arcangelovicedomini.redmineapi.common.exception.RedmineException;
 import eu.arcangelovicedomini.redmineapi.issues.external.service.dto.GetIssuesResponse;
 
@@ -49,7 +45,7 @@ public interface IssuesService {
 	 *            (via API key or HTTP auth)
 	 * @param parentId
 	 *            get issues whose parent issue is given id
-	 * @return
+	 * @return {@link GetIssuesResponse}
 	 * @throws RedmineException
 	 */
 	public GetIssuesResponse getIssues(String redmineUrl, String username, String password, String apikey,
